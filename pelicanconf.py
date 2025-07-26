@@ -28,8 +28,8 @@ AUTHOR_FEED_RSS = None
 # Social and External Links
 SOCIAL = (
     ('GitHub', 'https://github.com/physics-programmer'),
-    ('LinkedIn', 'https://linkedin.com/in/physics-programmer'),
-    ('ORCID', 'https://orcid.org/0000-0000-0000-0000'),
+    ('LinkedIn', 'https://www.linkedin.com/in/mimouni/'),
+    ('ORCID', 'https://orcid.org/0009-0008-7841-412X'),
     ('ResearchGate', 'https://researchgate.net/profile/physics-programmer'),
 )
 
@@ -175,8 +175,8 @@ PERSON_SCHEMA = {
     'affiliation': 'Research Institution',
     'sameAs': [
         'https://github.com/physics-programmer',
-        'https://linkedin.com/in/physics-programmer',
-        'https://orcid.org/0000-0000-0000-0000',
+        'https://www.linkedin.com/in/mimouni/',
+        'https://orcid.org/0009-0008-7841-412X',
         'https://researchgate.net/profile/physics-programmer'
     ]
 }
@@ -201,8 +201,8 @@ TECHNOLOGY_TAGS = [
 # SEO and Social Media
 TWITTER_USERNAME = 'physics_programmer'
 GITHUB_USERNAME = 'physics-programmer'
-LINKEDIN_USERNAME = 'physics-programmer'
-ORCID_ID = '0000-0000-0000-0000'
+LINKEDIN_USERNAME = 'mimouni'
+ORCID_ID = '0009-0008-7841-412X'
 
 # Google Analytics (placeholder - replace with actual ID)
 GOOGLE_ANALYTICS = 'G-XXXXXXXXXX'
@@ -212,7 +212,7 @@ DISQUS_SITENAME = 'physics-programmer'
 
 # Academic Profiles
 ACADEMIC_PROFILES = {
-    'orcid': '0000-0000-0000-0000',
+    'orcid': '0009-0008-7841-412X',
     'researchgate': 'physics-programmer',
     'google_scholar': 'physics-programmer',
     'arxiv': 'physics-programmer',

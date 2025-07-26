@@ -33,38 +33,29 @@
     <div class="container">
         <h2>Key Projects</h2>
         <div class="projects-horizontal">
-            {% for article in articles[:4] %}
-            <article class="project-card-compact">
-                <div class="project-header">
-                    <h3 class="project-title">{{ article.title }}</h3>
-                    <div class="project-meta">
-                        <span class="project-type">{{ article.category|format_project_type }}</span>
-                        {% if article.role %}<span class="project-role">{{ article.role }}</span>{% endif %}
-                    </div>
-                </div>
-                <div class="project-details">
-                    <p class="project-summary">{{ article.metadata.get('summary', article.summary|striptags|truncate(120, True)) }}</p>
-                    {% if article.metadata.get('duration') %}
-                    <div class="project-duration"><strong>Duration:</strong> {{ article.duration }}</div>
-                    {% endif %}
-                    {% if article.technologies %}
-                    <div class="project-tech">
-                        {% for tech in article.technologies[:3] %}
-                        <span class="tech">{{ tech }}</span>
-                        {% endfor %}
-                        {% if article.technologies|length > 3 %}
-                        <span class="tech more">+{{ article.technologies|length - 3 }}</span>
-                        {% endif %}
-                    </div>
-                    {% endif %}
-                    {% if article.collaborators %}
-                    <div class="project-collaborators">
-                        <strong>Team:</strong> {{ article.collaborators|join(', ') }}
-                    </div>
-                    {% endif %}
-                </div>
+            <article class="project-card-clean">
+                <h3 class="project-name">Seedl</h3>
+                <p class="project-description">Seedl is an AI-powered financial document analysis platform serving the FinTech industry.</p>
+                <p class="project-contribution">I contributed to backend development and infrastructure with 589 commits over 3+ years.</p>
             </article>
-            {% endfor %}
+            
+            <article class="project-card-clean">
+                <h3 class="project-name">Ryax Runner</h3>
+                <p class="project-description">The scheduler is an enterprise workflow execution engine powering the Ryax platform.</p>
+                <p class="project-contribution">I contributed through 1,125+ commits to the core platform over 3+ years.</p>
+            </article>
+            
+            <article class="project-card-clean">
+                <h3 class="project-name">CAPE Agentic Infrastructure</h3>
+                <p class="project-description">The project develops cognitive agent-based proactive edge computing infrastructure.</p>
+                <p class="project-contribution">I contributed as Research Developer in WP2 (Infrastructure from Code) & WP4 (LLM Infrastructure).</p>
+            </article>
+            
+            <article class="project-card-clean">
+                <h3 class="project-name">Global Continuum Placement</h3>
+                <p class="project-description">The project advances meta-scheduling research for multi-cluster continuum computing in the PHYSICS EU project.</p>
+                <p class="project-contribution">I contributed as Work Package 2 Lead for Meta-scheduling on Multi-cluster Continuum (2021-2024).</p>
+            </article>
         </div>
     </div>
 </section>
@@ -78,8 +69,8 @@
             </div>
             <div class="contact-links">
                 <a href="https://github.com/physics-programmer" class="contact-link">GitHub</a>
-                <a href="https://linkedin.com/in/physics-programmer" class="contact-link">LinkedIn</a>
-                <a href="https://orcid.org/0000-0000-0000-0000" class="contact-link">ORCID</a>
+                <a href="https://www.linkedin.com/in/mimouni/" class="contact-link">LinkedIn</a>
+                <a href="https://orcid.org/0009-0008-7841-412X" class="contact-link">ORCID</a>
             </div>
         </div>
     </div>
