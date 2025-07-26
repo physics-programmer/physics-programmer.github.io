@@ -6,7 +6,7 @@ from pelicanconf import *
 
 # Production Settings  
 # Update this URL to match your actual GitHub Pages URL
-SITEURL = 'https://YOURUSERNAME.github.io'  # Replace YOURUSERNAME with actual GitHub username
+SITEURL = 'https://physics-programmer.github.io'  # Replace YOURUSERNAME with actual GitHub username
 RELATIVE_URLS = False
 
 # Feed Generation for Production
