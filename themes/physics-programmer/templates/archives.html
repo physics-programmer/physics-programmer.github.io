@@ -1,0 +1,281 @@
+{% extends "base.html" %}
+
+{% block title %}Project Archives - {{ SITENAME }}{% endblock title %}
+
+{% block description %}Complete chronological archive of physics-programmer's research projects and computational developments{% endblock description %}
+
+{% block body_class %}archives-page{% endblock body_class %}
+
+{% block content %}
+<div class="archives-container">
+    <header class="archives-header">
+        <div class="container">
+            <div class="archives-breadcrumb">
+                <nav aria-label="Breadcrumb">
+                    <ol class="breadcrumb">
+                        <li><a href="{{ SITEURL }}/">Home</a></li>
+                        <li aria-current="page">Archives</li>
+                    </ol>
+                </nav>
+            </div>
+            
+            <h1 class="archives-title">Project Timeline</h1>
+            <p class="archives-description">
+                Chronological overview of research projects, computational developments, and collaborative initiatives
+            </p>
+            
+            <div class="archives-stats">
+                <div class="stat-item">
+                    <span class="stat-number">{{ articles|length }}</span>
+                    <span class="stat-label">Total Projects</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">{{ categories|length }}</span>
+                    <span class="stat-label">Categories</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">{{ dates|length if dates else '1' }}</span>
+                    <span class="stat-label">Active Years</span>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <main class="archives-content">
+        <div class="container">
+            <!-- Filter Controls -->
+            <div class="archives-filters">
+                <div class="filter-group">
+                    <label for="category-filter">Filter by Category:</label>
+                    <select id="category-filter" class="filter-select">
+                        <option value="all">All Categories</option>
+                        {% for category, articles in categories %}
+                        <option value="{{ category.slug }}">{{ category|format_project_type }} ({{ articles|length }})</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="year-filter">Filter by Year:</label>
+                    <select id="year-filter" class="filter-select">
+                        <option value="all">All Years</option>
+                        {% for year in range(2020, 2025) %}
+                        <option value="{{ year }}">{{ year }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Timeline View -->
+            <div class="timeline-container">
+                {% set current_year = namespace(value=None) %}
+                {% for article in dates %}
+                    {% if current_year.value != article.date.year %}
+                        {% if current_year.value is not none %}
+                        </div> <!-- Close previous year group -->
+                        {% endif %}
+                        {% set current_year.value = article.date.year %}
+                        <div class="year-group" data-year="{{ article.date.year }}">
+                            <h2 class="year-header">{{ article.date.year }}</h2>
+                            <div class="year-timeline">
+                    {% endif %}
+                    
+                    <article class="timeline-item" data-category="{{ article.category.slug }}" data-year="{{ article.date.year }}">
+                        <div class="timeline-marker">
+                            <time class="timeline-date" datetime="{{ article.date.isoformat() }}">
+                                {{ article.date.strftime('%b') }}
+                            </time>
+                        </div>
+                        
+                        <div class="timeline-content">
+                            <header class="timeline-header">
+                                <h3 class="timeline-title">
+                                    <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a>
+                                </h3>
+                                <div class="timeline-meta">
+                                    <span class="timeline-category">{{ article.category|format_project_type }}</span>
+                                    <time class="timeline-full-date" datetime="{{ article.date.isoformat() }}">
+                                        {{ article.date.strftime('%B %d, %Y') }}
+                                    </time>
+                                </div>
+                            </header>
+                            
+                            <div class="timeline-body">
+                                <p class="timeline-summary">{{ article.summary }}</p>
+                                
+                                {% if article.technologies %}
+                                <div class="timeline-technologies">
+                                    {% for tech in article.technologies[:3] %}
+                                    <span class="tech-tag small">{{ tech }}</span>
+                                    {% endfor %}
+                                    {% if article.technologies|length > 3 %}
+                                    <span class="tech-tag small more">+{{ article.technologies|length - 3 }}</span>
+                                    {% endif %}
+                                </div>
+                                {% endif %}
+                            </div>
+                            
+                            <footer class="timeline-footer">
+                                <a href="{{ SITEURL }}/{{ article.url }}" class="timeline-link">
+                                    View Project
+                                    <span class="link-arrow">→</span>
+                                </a>
+                            </footer>
+                        </div>
+                    </article>
+                {% endfor %}
+                
+                {% if current_year.value is not none %}
+                    </div> <!-- Close timeline -->
+                </div> <!-- Close last year group -->
+                {% endif %}
+            </div>
+            
+            <!-- Alternative List View -->
+            <div class="list-view" style="display: none;">
+                <div class="articles-list">
+                    {% for article in dates %}
+                    <article class="article-item" data-category="{{ article.category.slug }}" data-year="{{ article.date.year }}">
+                        <div class="article-content">
+                            <header class="article-header">
+                                <h3 class="article-title">
+                                    <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a>
+                                </h3>
+                                <div class="article-meta">
+                                    <span class="article-category">{{ article.category|format_project_type }}</span>
+                                    <time class="article-date" datetime="{{ article.date.isoformat() }}">
+                                        {{ article.date.strftime('%B %d, %Y') }}
+                                    </time>
+                                </div>
+                            </header>
+                            
+                            <div class="article-body">
+                                <p class="article-summary">{{ article.summary }}</p>
+                            </div>
+                            
+                            {% if article.technologies %}
+                            <div class="article-technologies">
+                                {% for tech in article.technologies[:4] %}
+                                <span class="tech-tag">{{ tech }}</span>
+                                {% endfor %}
+                                {% if article.technologies|length > 4 %}
+                                <span class="tech-tag more">+{{ article.technologies|length - 4 }}</span>
+                                {% endif %}
+                            </div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="article-actions">
+                            <a href="{{ SITEURL }}/{{ article.url }}" class="article-link">
+                                View Project
+                            </a>
+                        </div>
+                    </article>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <aside class="archives-sidebar">
+        <div class="container">
+            <!-- View Toggle -->
+            <div class="view-controls">
+                <h3>View Options</h3>
+                <div class="view-toggle">
+                    <button class="view-btn active" data-view="timeline">Timeline</button>
+                    <button class="view-btn" data-view="list">List</button>
+                </div>
+            </div>
+            
+            <!-- Category Summary -->
+            <div class="category-summary">
+                <h3>By Category</h3>
+                <ul class="category-list">
+                    {% for category, articles in categories %}
+                    <li class="category-item">
+                        <a href="{{ SITEURL }}/{{ category.url }}" class="category-link">
+                            <span class="category-name">{{ category|format_project_type }}</span>
+                            <span class="category-count">{{ articles|length }}</span>
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            
+            <!-- Recent Activity -->
+            <div class="recent-activity">
+                <h3>Most Recent</h3>
+                <ul class="recent-list">
+                    {% for article in articles[:5] %}
+                    <li class="recent-item">
+                        <a href="{{ SITEURL }}/{{ article.url }}" class="recent-link">
+                            <span class="recent-title">{{ article.title }}</span>
+                            <time class="recent-date" datetime="{{ article.date.isoformat() }}">
+                                {{ article.date.strftime('%b %Y') }}
+                            </time>
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </aside>
+</div>
+
+<script>
+// Basic filtering and view switching functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const categoryFilter = document.getElementById('category-filter');
+    const yearFilter = document.getElementById('year-filter');
+    const viewButtons = document.querySelectorAll('.view-btn');
+    const timelineView = document.querySelector('.timeline-container');
+    const listView = document.querySelector('.list-view');
+    
+    // Filter functionality
+    function filterItems() {
+        const selectedCategory = categoryFilter.value;
+        const selectedYear = yearFilter.value;
+        const items = document.querySelectorAll('[data-category][data-year]');
+        
+        items.forEach(item => {
+            const itemCategory = item.getAttribute('data-category');
+            const itemYear = item.getAttribute('data-year');
+            
+            const categoryMatch = selectedCategory === 'all' || itemCategory === selectedCategory;
+            const yearMatch = selectedYear === 'all' || itemYear === selectedYear;
+            
+            if (categoryMatch && yearMatch) {
+                item.style.display = '';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    }
+    
+    // View switching
+    function switchView(viewType) {
+        viewButtons.forEach(btn => btn.classList.remove('active'));
+        document.querySelector(`[data-view="${viewType}"]`).classList.add('active');
+        
+        if (viewType === 'timeline') {
+            timelineView.style.display = '';
+            listView.style.display = 'none';
+        } else {
+            timelineView.style.display = 'none';
+            listView.style.display = '';
+        }
+    }
+    
+    // Event listeners
+    categoryFilter.addEventListener('change', filterItems);
+    yearFilter.addEventListener('change', filterItems);
+    
+    viewButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            switchView(btn.getAttribute('data-view'));
+        });
+    });
+});
+</script>
+{% endblock content %}

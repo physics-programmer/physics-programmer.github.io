@@ -1,0 +1,175 @@
+{% extends "base.html" %}
+
+{% block title %}{{ SITENAME }} - {{ SITE_DESCRIPTION }}{% endblock title %}
+
+{% block description %}{{ SITE_DESCRIPTION }}{% endblock description %}
+
+{% block body_class %}homepage{% endblock body_class %}
+
+{% block content %}
+<div class="hero-section">
+    <div class="container">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    {{ AUTHOR }}
+                    <span class="hero-subtitle">Computational Research & Development</span>
+                </h1>
+                <p class="hero-description">
+                    {{ AUTHOR_BIO }}
+                </p>
+                <div class="hero-actions">
+                    <a href="#featured-projects" class="btn btn-primary">View Projects</a>
+                    <a href="/about.html" class="btn btn-secondary">About Me</a>
+                </div>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">{{ articles|length }}</span>
+                    <span class="stat-label">Projects</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">{{ categories|length }}</span>
+                    <span class="stat-label">Research Areas</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">{{ RESEARCH_DOMAINS|length }}</span>
+                    <span class="stat-label">Domains</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section id="featured-projects" class="featured-projects">
+    <div class="container">
+        <header class="section-header">
+            <h2>Featured Projects</h2>
+            <p>Highlighting key contributions to computational research and European collaboration</p>
+        </header>
+        
+        <div class="projects-grid">
+            {% for article in articles[:6] %}
+            <article class="project-card">
+                <div class="project-header">
+                    <h3 class="project-title">
+                        <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a>
+                    </h3>
+                    <div class="project-meta">
+                        <span class="project-category">{{ article.category|format_project_type }}</span>
+                        <time class="project-date" datetime="{{ article.date.isoformat() }}">
+                            {{ article.date.strftime('%Y') }}
+                        </time>
+                    </div>
+                </div>
+                
+                <div class="project-content">
+                    <p class="project-summary">{{ article.summary }}</p>
+                    
+                    {% if article.technologies %}
+                    <div class="project-technologies">
+                        {% for tech in article.technologies[:4] %}
+                        <span class="tech-tag">{{ tech }}</span>
+                        {% endfor %}
+                        {% if article.technologies|length > 4 %}
+                        <span class="tech-tag more">+{{ article.technologies|length - 4 }}</span>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                </div>
+                
+                <div class="project-footer">
+                    <a href="{{ SITEURL }}/{{ article.url }}" class="project-link" aria-label="Read more about {{ article.title }}">
+                        View Project
+                        <span class="link-arrow">→</span>
+                    </a>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+        
+        <div class="section-footer">
+            <a href="/projects/" class="btn btn-outline">View All Projects</a>
+        </div>
+    </div>
+</section>
+
+<section class="research-areas">
+    <div class="container">
+        <header class="section-header">
+            <h2>Research Domains</h2>
+            <p>Interdisciplinary expertise spanning computational sciences</p>
+        </header>
+        
+        <div class="domains-grid">
+            {% for domain in RESEARCH_DOMAINS %}
+            <div class="domain-card">
+                <h3 class="domain-title">{{ domain }}</h3>
+                <p class="domain-description">
+                    {% if domain == 'Computational Physics' %}
+                    Advanced modeling and simulation of physical systems using numerical methods and high-performance computing.
+                    {% elif domain == 'Scientific Computing' %}
+                    Development of algorithms and software tools for solving complex scientific problems efficiently.
+                    {% elif domain == 'Data Science' %}
+                    Extraction of insights from large-scale datasets using machine learning and statistical analysis.
+                    {% elif domain == 'Machine Learning' %}
+                    Implementation of AI algorithms for pattern recognition and predictive modeling in research contexts.
+                    {% elif domain == 'European Research' %}
+                    Leadership and collaboration in EU-funded research initiatives and international partnerships.
+                    {% else %}
+                    Contributing to advancing knowledge and methodologies in {{ domain.lower() }}.
+                    {% endif %}
+                </p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="recent-activity">
+    <div class="container">
+        <header class="section-header">
+            <h2>Recent Activity</h2>
+            <p>Latest developments and project updates</p>
+        </header>
+        
+        <div class="activity-timeline">
+            {% for article in articles[:4] %}
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <time class="timeline-date" datetime="{{ article.date.isoformat() }}">
+                        {{ article.date.strftime('%B %Y') }}
+                    </time>
+                    <h3 class="timeline-title">
+                        <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a>
+                    </h3>
+                    <p class="timeline-description">{{ article.summary }}</p>
+                    <span class="timeline-category">{{ article.category|format_project_type }}</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="section-footer">
+            <a href="/archives/" class="btn btn-outline">View Timeline</a>
+        </div>
+    </div>
+</section>
+
+<section class="collaboration-cta">
+    <div class="container">
+        <div class="cta-content">
+            <h2>Collaboration Opportunities</h2>
+            <p>
+                Interested in computational research collaboration or consulting? 
+                Let's explore how we can advance scientific knowledge together.
+            </p>
+            <div class="cta-actions">
+                <a href="/contact.html" class="btn btn-primary">Get in Touch</a>
+                <a href="/about.html" class="btn btn-secondary">Learn More</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}
