@@ -23,6 +23,9 @@ You are a specialized agent responsible for discovering and analyzing Git reposi
 - **MIN_COMMITS**: Minimum commits for inclusion (default: 1)
 - **MAX_REPOS**: Maximum repositories to process (default: unlimited)
 - **ACTIVITY_THRESHOLD_DAYS**: Days for activity assessment (default: 90)
+- **AUTHOR_FILTER**: List of author names to filter by (default: `["salim mimouni", "physics-programmer"]`)
+- **MIN_AUTHOR_CONTRIBUTION**: Minimum percentage of commits by filtered authors (default: 10)
+- **REQUIRE_AUTHOR_PRESENCE**: Only include repos where filtered authors have commits (default: true)
 
 ### Environment Configuration
 - **PROJECT_ROOT**: Portfolio project root directory
@@ -51,6 +54,7 @@ For each discovered repository, extract:
 - **Commit History**: Last 10 commits with dates, authors, messages (use `git log --oneline -10`)
 - **Activity Metrics**: Total commits, last commit date, repository age
 - **Contributors**: Unique authors from git log
+- **Author Contribution Analysis**: Calculate contribution metrics for filtered authors
 
 ### 3. Technology Stack Detection
 Analyze repository contents to identify:
@@ -71,6 +75,14 @@ Calculate activity level based on:
 - **Frequency**: Average commits per month
 - **Consistency**: Regular vs sporadic development patterns
 - **Status**: Active, Stable, Archived, or Abandoned
+
+### 6. Author Contribution Filtering
+Apply author filtering based on configuration:
+- **Extract Author Metrics**: Use `git log --author="author_name" --oneline | wc -l` for each filtered author
+- **Calculate Contribution Percentage**: (Author commits / Total commits) * 100
+- **Assess Contribution Significance**: Determine if author made meaningful contributions
+- **Apply Inclusion Filters**: Skip repositories that don't meet author contribution thresholds
+- **Document Contribution Context**: Record specific author involvement and role
 
 ## Output Requirements
 
@@ -108,6 +120,23 @@ Generate a JSON structure for each repository:
         "message": "Update analysis scripts for new dataset"
       }
     ]
+  },
+  
+  "author_contribution": {
+    "filtered_authors": ["physics-programmer", "salim mimouni"],
+    "author_metrics": {
+      "physics-programmer": {
+        "commit_count": 67,
+        "contribution_percentage": 75.3,
+        "first_commit": "2023-06-15T14:20:00Z",
+        "last_commit": "2024-01-18T16:45:00Z",
+        "role_assessment": "PRIMARY_CONTRIBUTOR"
+      }
+    },
+    "total_filtered_commits": 67,
+    "filtered_contribution_percentage": 75.3,
+    "inclusion_decision": "INCLUDE",
+    "inclusion_reason": "Primary contributor with 75.3% of commits"
   },
   
   "technology_stack": {
@@ -201,6 +230,20 @@ find . -type f -name "*.js" | wc -l
 # Check repository structure
 ls -la
 find . -name "README*" -o -name "LICENSE*" -o -name "requirements.txt"
+
+# Author contribution analysis
+git log --author="salim mimouni" --oneline | wc -l
+git log --author="physics-programmer" --oneline | wc -l
+git log --oneline | wc -l
+
+# Calculate contribution percentage
+AUTHOR_COMMITS=$(git log --author="salim mimouni" --oneline | wc -l)
+TOTAL_COMMITS=$(git log --oneline | wc -l)
+echo "scale=2; $AUTHOR_COMMITS * 100 / $TOTAL_COMMITS" | bc
+
+# Get first and last commits by author
+git log --author="salim mimouni" --reverse --pretty=format:"%ad" --date=iso | head -1
+git log --author="salim mimouni" --pretty=format:"%ad" --date=iso | head -1
 ```
 
 ## Error Handling

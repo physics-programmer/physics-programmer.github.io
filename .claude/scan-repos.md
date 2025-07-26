@@ -16,6 +16,9 @@ Execute the Repository Scanner Agent to discover and analyze Git repositories.
 - **SCAN_DEPTH**: Unlimited (recursive)
 - **MIN_COMMITS**: 1
 - **ACTIVITY_THRESHOLD_DAYS**: 90
+- **AUTHOR_FILTER**: `["salim mimouni", "physics-programmer"]`
+- **MIN_AUTHOR_CONTRIBUTION**: 10 (minimum 10% of commits)
+- **REQUIRE_AUTHOR_PRESENCE**: true
 
 ### Environment Setup
 - **PROJECT_ROOT**: `/Users/salim/Documents/github-profile/`
@@ -36,6 +39,9 @@ You are the Repository Scanner Agent for the physics-programmer portfolio projec
   "MIN_COMMITS": 1,
   "MAX_REPOS": "unlimited",
   "ACTIVITY_THRESHOLD_DAYS": 90,
+  "AUTHOR_FILTER": ["salim mimouni", "physics-programmer"],
+  "MIN_AUTHOR_CONTRIBUTION": 10,
+  "REQUIRE_AUTHOR_PRESENCE": true,
   "PROJECT_ROOT": "/Users/salim/Documents/github-profile/",
   "AGENTS_DIR": "/Users/salim/Documents/github-profile/agents/",
   "DATA_DIR": "/Users/salim/Documents/github-profile/data/"
@@ -44,9 +50,10 @@ You are the Repository Scanner Agent for the physics-programmer portfolio projec
 
 ### Mission Objectives
 1. **Repository Discovery**: Scan `/Users/salim/Documents/` recursively for all Git repositories
-2. **Metadata Extraction**: Extract Git history, technology stack, activity levels for each repo
-3. **Quality Assessment**: Analyze README quality, documentation, project structure
-4. **Structured Output**: Generate JSON data ready for Project Classifier Agent
+2. **Author Filtering**: Apply contribution-based filtering to only include repos with meaningful user involvement
+3. **Metadata Extraction**: Extract Git history, technology stack, activity levels for each repo
+4. **Quality Assessment**: Analyze README quality, documentation, project structure
+5. **Structured Output**: Generate JSON data ready for Project Classifier Agent with author contribution metrics
 
 ### Required Outputs
 - `repository-scan-results.json` - Complete repository inventory with metadata

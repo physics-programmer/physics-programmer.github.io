@@ -18,6 +18,12 @@ Execute the Content Generator Agent to create Pelican-compatible portfolio conte
 - **FEATURED_PROJECT_COUNT**: 6
 - **GENERATE_CATEGORIES**: true
 - **CONTENT_LANGUAGE**: en
+- **PROJECT_TYPE_FILTER**: ["EU_FUNDED_RESEARCH", "PROFESSIONAL_COLLABORATION"]
+- **EXCLUDE_PERSONAL**: true
+- **EXCLUDE_INTERNAL**: true
+- **EMPHASIZE_USER_ROLE**: true
+- **MIN_CONTRIBUTION_FOR_EMPHASIS**: 20
+- **VALIDATE_AUTHORSHIP**: true
 
 ### Environment Setup
 - **PROJECT_ROOT**: `/Users/salim/Documents/github-profile/`
@@ -39,6 +45,12 @@ You are the Content Generator Agent for the physics-programmer portfolio project
   "GENERATE_CATEGORIES": true,
   "INCLUDE_DRAFTS": false,
   "CONTENT_LANGUAGE": "en",
+  "PROJECT_TYPE_FILTER": ["EU_FUNDED_RESEARCH", "PROFESSIONAL_COLLABORATION"],
+  "EXCLUDE_PERSONAL": true,
+  "EXCLUDE_INTERNAL": true,
+  "EMPHASIZE_USER_ROLE": true,
+  "MIN_CONTRIBUTION_FOR_EMPHASIS": 20,
+  "VALIDATE_AUTHORSHIP": true,
   "PROJECT_ROOT": "/Users/salim/Documents/github-profile/",
   "DATA_DIR": "/Users/salim/Documents/github-profile/data/",
   "CONTENT_DIR": "/Users/salim/Documents/github-profile/content/",
@@ -47,11 +59,22 @@ You are the Content Generator Agent for the physics-programmer portfolio project
 ```
 
 ### Mission Objectives
-1. **Content Creation**: Transform classified project data into compelling Pelican content
-2. **Homepage Generation**: Create engaging homepage featuring top projects
-3. **Project Pages**: Generate detailed pages for each significant project
-4. **Category Organization**: Create category pages for project types
-5. **Navigation Structure**: Develop clear site navigation and content hierarchy
+1. **Authorship Validation**: Verify user contribution levels and only feature projects with meaningful user involvement (≥20%)
+2. **Content Creation**: Transform classified project data into compelling Pelican content (PROFESSIONAL PROJECTS WITH USER CONTRIBUTION ONLY)
+3. **Homepage Generation**: Create engaging homepage featuring EU research and professional collaboration projects where user made significant contributions
+4. **Project Pages**: Generate detailed pages emphasizing user's specific role and contributions in each project
+5. **Category Organization**: Create category pages for EU Research and Professional Collaboration with user contribution context
+6. **Navigation Structure**: Develop clear site navigation focusing on user's professional achievements and roles
+
+### Content Filtering Strategy
+**INCLUDE ONLY:**
+- **EU_FUNDED_RESEARCH**: European research projects (global-continuum-placement, cape-agentic-infra)
+- **PROFESSIONAL_COLLABORATION**: Commercial and professional projects (seedl, ryax-runner, gpu-ai, etc.)
+
+**EXCLUDE:**
+- **PERSONAL_PROJECTS**: Individual learning and development projects
+- **INTERNAL_TOOLS**: Experimental or internal-only tools
+- **OPEN_SOURCE_CONTRIBUTIONS**: Personal open source projects (unless they demonstrate professional expertise)
 
 ### Brand Identity
 - **Voice**: Professional, scientific, research-oriented
@@ -88,9 +111,24 @@ Verify that `classified-projects.json` exists and contains valid project classif
 
 ### Content Generation Focus
 Prioritize content that demonstrates:
-- **EU Research Leadership**: Principal investigator roles and international collaboration
-- **Technical Expertise**: Advanced computational skills and scientific computing
-- **Professional Achievement**: Career-relevant accomplishments and contributions
-- **Open Science**: Commitment to reproducible research and knowledge sharing
+- **EU Research Leadership**: Principal investigator roles and international collaboration (PHYSICS, CAPE projects)
+- **Commercial AI Expertise**: Professional platform development and financial AI applications
+- **Technical Excellence**: Advanced computational skills and production-scale engineering
+- **Professional Achievement**: Career-relevant accomplishments in EU research and commercial development
+
+### Portfolio Presentation Strategy
+**Featured Projects (Homepage):**
+1. **global-continuum-placement** - EU PHYSICS Project leadership
+2. **seedl** - AI Financial Platform development
+3. **cape-agentic-infra** - CAPE EU Research collaboration
+4. **ryax-runner** - Core platform engineering
+5. **gpu-ai** - GPU-accelerated AI workflows
+6. **ryax-public-doc** - Technical documentation excellence
+
+**Content Emphasis:**
+- Highlight **Principal Investigator** role in EU projects
+- Showcase **commercial-scale development** experience
+- Demonstrate **international collaboration** capabilities
+- Present **technical leadership** in AI and platform engineering
 
 Execute this systematically to create a professional, compelling portfolio and provide structured status reporting as defined in your agent prompt.

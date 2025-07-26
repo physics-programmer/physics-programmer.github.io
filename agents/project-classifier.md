@@ -73,10 +73,11 @@ You are a specialized agent responsible for analyzing repository data from the R
 
 #### Personal Projects
 **Indicators to Look For:**
-- **Single Author**: Primarily or exclusively "physics-programmer" commits
+- **Single Author**: Use author contribution data to identify >90% user commits
 - **Learning Indicators**: Tutorial-following, technology exploration
 - **Experimental Nature**: Proof-of-concept, technology testing
 - **Hobby Characteristics**: Creative projects, personal tools
+- **High User Contribution**: Primary contributor with full ownership
 
 ### 2. Technology Significance Assessment
 
@@ -105,6 +106,32 @@ You are a specialized agent responsible for analyzing repository data from the R
 - **Documentation Quality**: Comprehensive documentation suggests importance
 - **Testing Coverage**: Thorough testing indicates professional significance
 - **Deployment Evidence**: Production deployment configurations
+
+### 4. Author Contribution Assessment
+
+#### Contribution Level Analysis
+Use author contribution data from Repository Scanner to assess:
+- **Primary Contributor (>50% commits)**: User is main developer/maintainer
+- **Significant Contributor (20-50% commits)**: Important role in development
+- **Moderate Contributor (10-20% commits)**: Meaningful participation
+- **Minor Contributor (5-10% commits)**: Limited but notable involvement
+- **Minimal Contributor (<5% commits)**: Very limited involvement
+
+#### Portfolio Relevance Scoring
+Calculate portfolio weight based on contribution level:
+- **Primary Contributor**: 1.0x weight multiplier
+- **Significant Contributor**: 0.8x weight multiplier  
+- **Moderate Contributor**: 0.6x weight multiplier
+- **Minor Contributor**: 0.3x weight multiplier
+- **Minimal Contributor**: 0.1x weight multiplier (consider exclusion)
+
+#### Role Assessment
+Determine user's role in project context:
+- **PROJECT_LEAD**: Leading the project or work package
+- **CORE_DEVELOPER**: Major technical contributor
+- **COLLABORATOR**: Active team member
+- **CONTRIBUTOR**: Meaningful but limited participation
+- **MINIMAL_INVOLVEMENT**: Very limited participation
 
 ## Classification Framework
 
@@ -177,6 +204,14 @@ Extend the repository data with classification information:
       "technical_complexity": "HIGH",
       "innovation_level": "MEDIUM",
       "career_relevance": "CRITICAL"
+    },
+    
+    "author_relevance": {
+      "user_contribution_percentage": 75.3,
+      "user_role_assessment": "PRIMARY_CONTRIBUTOR",
+      "contribution_significance": "HIGH",
+      "portfolio_weight_multiplier": 1.0,
+      "authorship_confidence": "HIGH"
     },
     
     "display_priority": 95,
