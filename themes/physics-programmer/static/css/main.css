@@ -214,7 +214,7 @@ a:hover {
 .hero-section {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
-    padding: 4rem 0;
+    padding: 3rem 0;
     position: relative;
     overflow: hidden;
 }
@@ -232,33 +232,38 @@ a:hover {
 .hero-content {
     position: relative;
     z-index: 2;
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 3rem;
-    align-items: center;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.hero-main {
+    padding: 2rem 0;
 }
 
 .hero-title {
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-weight: 700;
     line-height: 1.2;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
     color: white;
 }
 
 .hero-subtitle {
-    display: block;
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     font-weight: 400;
     color: rgba(255, 255, 255, 0.9);
-    margin-top: 0.5rem;
+    margin-bottom: 1rem;
 }
 
 .hero-description {
-    font-size: 1.125rem;
-    margin-bottom: 2rem;
+    font-size: 1rem;
+    margin-bottom: 1rem;
     color: rgba(255, 255, 255, 0.9);
-    line-height: 1.6;
+    line-height: 1.5;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .hero-actions {
@@ -267,10 +272,35 @@ a:hover {
     margin-bottom: 2rem;
 }
 
-.hero-stats {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
+.hero-stats-inline {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.stat {
+    font-weight: 500;
+}
+
+.hero-domains {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.domain-pill {
+    background: rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.9);
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    backdrop-filter: blur(10px);
 }
 
 .stat-item {
@@ -322,36 +352,51 @@ section {
     margin-top: 3rem;
 }
 
-/* Project Cards */
-.projects-grid {
+/* Featured Projects */
+.featured-projects {
+    padding: 2rem 0;
+    background: #f8f9fa;
+}
+
+.featured-projects h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+    color: #1a252f;
+}
+
+.projects-horizontal {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 2rem;
-    margin-bottom: 3rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-.project-card {
+.project-card-compact {
     background: white;
-    border-radius: 12px;
-    padding: 2rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
     border: 1px solid #e1e8ed;
-    transition: all 0.3s ease;
-    position: relative;
+    transition: all 0.2s ease;
+    height: fit-content;
 }
 
-.project-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+.project-card-compact:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
 .project-header {
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem;
 }
 
 .project-title {
-    font-size: 1.25rem;
-    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+    margin-bottom: 0.3rem;
+    line-height: 1.3;
+    color: #1a252f;
 }
 
 .project-title a {
@@ -365,17 +410,65 @@ section {
 
 .project-meta {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.875rem;
-    color: #7f8c8d;
+    gap: 1rem;
+    flex-wrap: wrap;
+    font-size: 0.8rem;
+    margin-bottom: 0.8rem;
 }
 
-.project-category {
-    background: #ecf0f1;
-    padding: 0.25rem 0.75rem;
-    border-radius: 12px;
+.project-type {
+    background: #3498db;
+    color: white;
+    padding: 0.2rem 0.6rem;
+    border-radius: 10px;
     font-weight: 500;
+    font-size: 0.75rem;
+}
+
+.project-role {
+    background: #ecf0f1;
+    color: #2c3e50;
+    padding: 0.2rem 0.6rem;
+    border-radius: 10px;
+    font-weight: 500;
+    font-size: 0.75rem;
+}
+
+.project-details {
+    
+}
+
+.project-summary {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: #555;
+    margin-bottom: 0.8rem;
+}
+
+.project-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    margin-bottom: 0.5rem;
+}
+
+.tech {
+    background: #f1f3f4;
+    color: #555;
+    padding: 0.2rem 0.5rem;
+    border-radius: 8px;
+    font-size: 0.7rem;
+    font-weight: 500;
+}
+
+.tech.more {
+    background: #ddd;
+}
+
+.project-collaborators {
+    font-size: 0.8rem;
+    color: #666;
+    margin-top: 0.5rem;
 }
 
 .project-summary {
@@ -522,11 +615,55 @@ section {
     font-weight: 500;
 }
 
-/* CTA Section */
-.collaboration-cta {
-    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+/* Contact Section */
+.contact-info {
+    padding: 2rem 0;
+    background: #2c3e50;
     color: white;
-    text-align: center;
+}
+
+.contact-horizontal {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 900px;
+    margin: 0 auto;
+    gap: 2rem;
+}
+
+.contact-text h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: white;
+}
+
+.contact-text p {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
+}
+
+.contact-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.contact-link {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    backdrop-filter: blur(10px);
+}
+
+.contact-link:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
+    text-decoration: none;
 }
 
 .cta-content h2 {
@@ -849,17 +986,35 @@ section {
         padding: 0 1rem;
     }
     
-    .navbar-toggle {
-        display: flex;
+    .hero-stats-inline {
+        flex-direction: column;
+        gap: 0.5rem;
     }
     
-    .navbar-menu {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: white;
+    .hero-domains {
+        gap: 0.3rem;
+    }
+    
+    .domain-pill {
+        font-size: 0.8rem;
+        padding: 0.25rem 0.6rem;
+    }
+    
+    .projects-horizontal {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .contact-horizontal {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+    
+    .contact-links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
         border-top: 1px solid #e1e8ed;
     }
     

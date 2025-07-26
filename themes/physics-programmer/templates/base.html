@@ -80,38 +80,6 @@
     <!-- Skip to Content Link -->
     <a class="skip-link" href="#main-content">Skip to main content</a>
     
-    <!-- Header -->
-    <header class="site-header" role="banner">
-        <nav class="navbar" role="navigation" aria-label="Main navigation">
-            <div class="container">
-                <div class="navbar-brand">
-                    <a href="{{ SITEURL }}/" class="brand-link">
-                        <span class="brand-text">{{ AUTHOR }}</span>
-                        <span class="brand-subtitle">Computational Research</span>
-                    </a>
-                </div>
-                
-                <button class="navbar-toggle" aria-label="Toggle navigation" aria-expanded="false">
-                    <span class="hamburger-line"></span>
-                    <span class="hamburger-line"></span>
-                    <span class="hamburger-line"></span>
-                </button>
-                
-                <div class="navbar-menu">
-                    <ul class="navbar-nav">
-                        {% for title, link in MENUITEMS %}
-                        <li class="nav-item">
-                            <a href="{% if link.startswith('/') %}{{ SITEURL }}{{ link }}{% else %}{{ link }}{% endif %}" 
-                               class="nav-link{% if output_file == link %} active{% endif %}">
-                                {{ title }}
-                            </a>
-                        </li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
 
     <!-- Main Content -->
     <main id="main-content" role="main">
