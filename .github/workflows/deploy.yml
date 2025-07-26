@@ -40,7 +40,8 @@ jobs:
     - name: Build site with Pelican
       run: |
         source .venv/bin/activate
-        pelican content -s publishconf.py
+        export PYTHONPATH=$PWD:$PYTHONPATH
+        pelican content -s publishconf-simple.py
         
     - name: Setup Pages
       uses: actions/configure-pages@v4
