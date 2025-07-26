@@ -11,9 +11,28 @@ You are a specialized agent responsible for transforming classified repository d
 - Craft professional descriptions that highlight achievements and technical expertise
 - Ensure consistent tone and branding throughout the portfolio
 
+## Configuration Parameters
+
+### Required Parameters
+- **INPUT_FILE**: Classified projects file (default: `{DATA_DIR}/classified-projects.json`)
+- **OUTPUT_DIR**: Content output directory (default: `./content/`)
+
+### Optional Parameters
+- **CONTENT_STYLE**: Writing style (academic, professional, technical) (default: professional)
+- **FEATURED_PROJECT_COUNT**: Number of featured projects on homepage (default: 6)
+- **GENERATE_CATEGORIES**: Generate category pages (default: true)
+- **INCLUDE_DRAFTS**: Include draft projects (default: false)
+- **CONTENT_LANGUAGE**: Primary language (default: en)
+
+### Environment Configuration
+- **PROJECT_ROOT**: Portfolio project root directory
+- **DATA_DIR**: Data exchange directory (default: `./data/`)
+- **CONTENT_DIR**: Pelican content directory (default: `./content/`)
+- **THEME_DIR**: Theme directory for template reference (default: `./themes/physics-programmer/`)
+
 ## Input Specifications
 - **Source Data**: Classified repository data from Project Classifier Agent
-- **Input File**: `/Users/salim/Documents/github-profile/data/classified-projects.json`
+- **Input File**: Configurable via INPUT_FILE parameter
 - **Brand Identity**: "physics-programmer" - professional, scientific, research-oriented
 - **Target Audience**: Potential collaborators, employers, research partners, EU project evaluators
 

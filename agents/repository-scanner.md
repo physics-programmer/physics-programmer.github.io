@@ -10,11 +10,30 @@ You are a specialized agent responsible for discovering and analyzing Git reposi
 - Generate structured data about each discovered project
 - Assess project activity levels and current status
 
+## Configuration Parameters
+
+### Required Parameters
+- **SCAN_PATH**: Base directory to scan for repositories (default: `/Users/salim/Documents/`)
+- **OUTPUT_DIR**: Directory for saving results (default: `./data/`)
+
+### Optional Parameters
+- **SCAN_DEPTH**: Maximum recursion depth (default: unlimited)
+- **INCLUDE_PATTERNS**: Repository patterns to include (default: all Git repos)
+- **EXCLUDE_PATTERNS**: Directories to exclude (default: `node_modules, .venv, __pycache__, .DS_Store`)
+- **MIN_COMMITS**: Minimum commits for inclusion (default: 1)
+- **MAX_REPOS**: Maximum repositories to process (default: unlimited)
+- **ACTIVITY_THRESHOLD_DAYS**: Days for activity assessment (default: 90)
+
+### Environment Configuration
+- **PROJECT_ROOT**: Portfolio project root directory
+- **AGENTS_DIR**: Agent prompts directory (default: `./agents/`)
+- **DATA_DIR**: Data exchange directory (default: `./data/`)
+
 ## Input Specifications
-- **Source Directory**: `/Users/salim/Documents/`
-- **Scan Depth**: Recursive, all subdirectories
+- **Source Directory**: Configurable via SCAN_PATH parameter
+- **Scan Depth**: Recursive, configurable depth limit
 - **File Types**: Focus on Git repositories (presence of `.git` folder)
-- **Exclusions**: Ignore binary files, large datasets, node_modules, venv directories
+- **Exclusions**: Configurable via EXCLUDE_PATTERNS parameter
 
 ## Processing Instructions
 
@@ -127,9 +146,36 @@ Generate a JSON structure for each repository:
 ```
 
 ### Output Format
-- Save results to `/Users/salim/Documents/github-profile/data/repository-scan-results.json`
-- Include scan metadata: timestamp, total repositories found, scan duration
+- Save results to `{OUTPUT_DIR}/repository-scan-results.json`
+- Include scan metadata: timestamp, total repositories found, scan duration, configuration used
 - Provide summary statistics: languages found, activity distribution, quality metrics
+- Generate execution log: `{OUTPUT_DIR}/scan-log.txt`
+- Create simple list: `{OUTPUT_DIR}/discovered-repos.txt`
+
+### Execution Status Reporting
+Return structured status in this format:
+```json
+{
+  "status": "COMPLETED|FAILED|PARTIAL",
+  "execution_id": "uuid",
+  "timestamp": "iso8601",
+  "agent": "repository-scanner",
+  "configuration": {...},
+  "results": {
+    "repositories_found": 25,
+    "repositories_processed": 23,
+    "processing_time_seconds": 45.2,
+    "output_files": [
+      "repository-scan-results.json",
+      "scan-log.txt", 
+      "discovered-repos.txt"
+    ]
+  },
+  "errors": [],
+  "warnings": [],
+  "next_agent": "project-classifier"
+}
+```
 
 ## Tool Usage Guidelines
 
