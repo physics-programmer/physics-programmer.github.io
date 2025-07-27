@@ -21,7 +21,11 @@
                 </div>
                 <div class="hero-domains">
                     {% for domain in RESEARCH_DOMAINS %}
+                    {% if domain == "European Research" %}
+                    <a href="https://erc.europa.eu/" class="domain-pill" target="_blank" rel="noopener">{{ domain }}</a>
+                    {% else %}
                     <span class="domain-pill">{{ domain }}</span>
+                    {% endif %}
                     {% endfor %}
                 </div>
             </div>
@@ -37,36 +41,58 @@
                 <h3 class="project-name">Seedl</h3>
                 <p class="project-description">Seedl is an AI-powered financial document analysis and KPI extraction platform serving the FinTech industry with production-scale capabilities.</p>
                 <p class="project-contribution">I contributed as team member with Charles Marshall, Pedro Velho, and Michael Mercier over 3+ years (589 total commits, 15 commits in last 90 days).</p>
+                <div class="project-links">
+                    <span class="project-link private-project">Private Project</span>
+                </div>
             </article>
             
             <article class="project-card-clean">
                 <h3 class="project-name">Ryax Runner</h3>
                 <p class="project-description">The core workflow execution engine powering the Ryax enterprise platform with cloud-native architecture and high-scale processing capabilities.</p>
                 <p class="project-contribution">I contributed as Platform Development Contributor with Michael Mercier, Charles Marshall, and David Glesser (1,125 total commits, Apache-2.0 licensed).</p>
+                <div class="project-links">
+                    <a href="https://ryax.tech/" class="project-link" target="_blank" rel="noopener">Platform</a>
+                    <a href="https://docs.ryax.tech/" class="project-link" target="_blank" rel="noopener">Documentation</a>
+                    <a href="https://gitlab.com/ryax-tech/ryax/ryax-runner" class="project-link" target="_blank" rel="noopener">Repository</a>
+                </div>
             </article>
             
             <article class="project-card-clean">
                 <h3 class="project-name">CAPE Agentic Infrastructure</h3>
                 <p class="project-description">CAPE project developing cognitive agent-based proactive edge computing infrastructure with LLM-empowered provisioning capabilities.</p>
                 <p class="project-contribution">I lead this project as main contributor with 62 out of 66 commits, active development in WP2 (Infrastructure from Code) & WP4 (LLM Infrastructure).</p>
+                <div class="project-links">
+                    <a href="https://gitlab.com/ryax-tech/research/cape-tools/cape-agentic-infra" class="project-link" target="_blank" rel="noopener">Repository</a>
+                </div>
             </article>
             
             <article class="project-card-clean">
                 <h3 class="project-name">Global Continuum Placement</h3>
                 <p class="project-description">PHYSICS EU Research Project advancing meta-scheduling research for multi-cluster continuum computing with next-generation distributed computing infrastructure.</p>
                 <p class="project-contribution">I contributed to Work Package 2 (Meta-scheduling) with Michael Mercier, Anderson Andrei, and Yiannis Georgiou (87 total commits, 2021-2024).</p>
+                <div class="project-links">
+                    <a href="https://github.com/andersonandrei/global-continuum-placement" class="project-link" target="_blank" rel="noopener">Repository</a>
+                    <a href="https://cordis.europa.eu/project/id/101017047" class="project-link" target="_blank" rel="noopener">EU Project</a>
+                </div>
             </article>
             
             <article class="project-card-clean">
                 <h3 class="project-name">GPU-AI Workflows</h3>
                 <p class="project-description">GPU-accelerated AI workflows and synthetic data generation platform enabling high-performance machine learning and data creation at scale.</p>
                 <p class="project-contribution">I actively contribute with Alvin Snaik, Yiannis Georgiou, and Pedro Velho (353 total commits, 25 commits in last 90 days, currently active).</p>
+                <div class="project-links">
+                    <span class="project-link private-project">Private Repository</span>
+                </div>
             </article>
             
             <article class="project-card-clean">
                 <h3 class="project-name">Ryax Public Documentation</h3>
                 <p class="project-description">Public documentation for Ryax platform and workflows, providing comprehensive technical documentation and user guides.</p>
                 <p class="project-contribution">I contributed to technical documentation excellence with David Glesser, Pedro Velho, and Michael Mercier (381 total commits, Apache-2.0 licensed).</p>
+                <div class="project-links">
+                    <a href="https://docs.ryax.tech/" class="project-link" target="_blank" rel="noopener">Live Documentation</a>
+                    <a href="https://gitlab.com/ryax-tech/ryax/ryax-public-doc" class="project-link" target="_blank" rel="noopener">Repository</a>
+                </div>
             </article>
         </div>
     </div>
