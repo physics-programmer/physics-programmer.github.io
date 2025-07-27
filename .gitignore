@@ -92,3 +92,26 @@ data/build-report.json
 # Backup files
 *.bak
 *.backup
+
+# Generated HTML files in root (should only be in output/)
+*.html
+!output/**/*.html
+
+# Generated directories that mirror output/
+/archives/
+/category/
+/projects/
+/tag/
+/tags.html
+/categories.html
+/index2.html
+
+# Theme files in root (should only be in themes/)
+/theme/
+
+# Additional log and report files
+content-generation-log.txt
+site-build-report.md
+
+# Workflow documentation (internal only)
+workflows/
