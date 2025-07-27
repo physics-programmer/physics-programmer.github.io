@@ -1,4 +1,32 @@
-# Python
+# Hide ALL development files - only show website files like gh-pages branch
+
+# Source and development directories
+.claude/
+agents/
+cache/
+content/
+data/
+logs/
+site-specifications/
+themes/
+workflows/
+output/
+
+# Configuration and build files
+pelicanconf.py
+publishconf*.py
+requirements*.txt
+uv.lock
+
+# Log and report files
+*.log
+*-log.txt
+*-report.md
+*-report.txt
+content-generation-log.txt
+site-build-report.md
+
+# Python artifacts
 __pycache__/
 *.py[cod]
 *$py.class
@@ -27,19 +55,14 @@ venv/
 ENV/
 env/
 
-# Pelican
-output/
-*.pid
-.pelican/
-
-# IDE
+# IDE and editor files
 .vscode/
 .idea/
 *.swp
 *.swo
 *~
 
-# OS
+# OS files
 .DS_Store
 .DS_Store?
 ._*
@@ -48,70 +71,17 @@ output/
 ehthumbs.db
 Thumbs.db
 
-# Logs
-*.log
-
-# Internal directories - NEVER expose these
-.claude/
-agents/
-cache/
-content/
-data/
-logs/
-site-specifications/
-themes/
-workflows/
-
-# Build and configuration files
-pelicanconf.py
-publishconf*.py
-requirements*.txt
-uv.lock
-
-# Log and report files
-*-report.md
-*-report.txt
-*-log.txt
-content-generation-log.txt
-site-build-report.md
-
-# Agent data (keep source but ignore large outputs)
-data/*.json
-data/*.txt
-data/scan-log.txt
-data/build-report.json
-
-# Temporary files
-*.tmp
-*.temp
-
-# Cache
+# Cache and temporary files
 .cache/
 *.cache
-
-# Backup files
+*.tmp
+*.temp
 *.bak
 *.backup
 
-# Generated HTML files in root (should only be in output/)
-*.html
-!output/**/*.html
-
-# Generated directories that mirror output/
-/archives/
-/category/
-/projects/
-/tag/
-/tags.html
-/categories.html
-/index2.html
-
-# Theme files in root (should only be in themes/)
-/theme/
-
-# Additional log and report files
-content-generation-log.txt
-site-build-report.md
-
-# Workflow documentation (internal only)
-workflows/
+# Keep only these files visible (like gh-pages):
+# - *.html files (website pages)
+# - /archives/, /category/, /projects/, /tag/ directories
+# - /theme/ directory (CSS, JS, images)
+# - README.md
+# - .gitignore
