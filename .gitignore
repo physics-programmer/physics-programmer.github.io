@@ -51,6 +51,30 @@ Thumbs.db
 # Logs
 *.log
 
+# Internal directories - NEVER expose these
+.claude/
+agents/
+cache/
+content/
+data/
+logs/
+site-specifications/
+themes/
+workflows/
+
+# Build and configuration files
+pelicanconf.py
+publishconf*.py
+requirements*.txt
+uv.lock
+
+# Log and report files
+*-report.md
+*-report.txt
+*-log.txt
+content-generation-log.txt
+site-build-report.md
+
 # Agent data (keep source but ignore large outputs)
 data/*.json
 data/*.txt
