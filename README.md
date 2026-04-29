@@ -1,106 +1,52 @@
 # Physics-Programmer Portfolio
 
-Professional portfolio website showcasing computational research and European collaboration projects.
+Source repository for the `physics-programmer.github.io` personal portfolio and CV.
 
-## 🌟 Features
+## What Lives Here
 
-- **AI-Driven Content**: Automated project discovery and content generation using specialized agents
-- **Professional Design**: Modern, responsive portfolio optimized for research professionals
-- **Automated Deployment**: GitHub Actions pipeline for seamless updates
-- **Research Focus**: Highlighting EU research projects, academic collaborations, and computational expertise
+- `content/`: Pelican Markdown content for the personal site.
+- `themes/physics-programmer/`: custom Pelican theme.
+- `pelicanconf.py`: local/development Pelican settings.
+- `publishconf-simple.py`: production settings used by GitHub Actions.
+- `.github/workflows/deploy.yml`: GitHub Pages deployment workflow.
+- `cv/overleaf/`: canonical LaTeX CV source.
+- `cv/works.bib`: publication and patent bibliography source.
 
-## 🏗️ Architecture
+Generated site output is not source. `output/`, caches, logs, and CV build outputs are ignored.
 
-### Agent-Driven Content Pipeline
-- **Repository Scanner Agent**: Discovers Git repositories and extracts metadata
-- **Project Classifier Agent**: Categorizes projects by type (EU Research, Academic, etc.)
-- **Content Generator Agent**: Creates compelling project narratives
-- **Site Builder Agent**: Generates optimized static site
+## Setup
 
-### Technology Stack
-- **Static Site Generator**: Pelican (Python)
-- **Hosting**: GitHub Pages
-- **Deployment**: GitHub Actions with uv for fast Python builds
-- **Theme**: Custom responsive design optimized for research portfolios
-
-## 🚀 Development
-
-### Setup
 ```bash
-# Clone repository
-git clone https://github.com/physics-programmer/physics-programmer.github.io
-cd physics-programmer.github.io
-
-# Create virtual environment with uv
 uv venv .venv
 source .venv/bin/activate
-uv pip install -r requirements.txt
+uv pip install -r requirements-minimal.txt
 ```
 
-### Local Development
+## Build The Site
+
+Use the same environment shape as CI:
+
 ```bash
-# Build site
-pelican content
-
-# Development server
-pelican --listen
-
-# Production build
-pelican content -s publishconf.py
+PYTHONPATH=$PWD .venv/bin/pelican content -s publishconf-simple.py
 ```
 
-### Content Updates
+For a disposable local check:
+
 ```bash
-# Run agent workflow to update content
-# (Execute agents in workflows/full-site-build.md)
-
-# Commit and push (triggers auto-deployment)
-git add .
-git commit -m "Update portfolio content"
-git push origin main
+PYTHONPATH=$PWD .venv/bin/pelican content -s publishconf-simple.py -o /tmp/github-profile-output-check
 ```
 
-## 📁 Project Structure
+## Build The CV
 
-```
-├── agents/                     # AI agent system prompts
-│   ├── repository-scanner.md
-│   ├── project-classifier.md
-│   ├── content-generator.md
-│   └── site-builder.md
-├── content/                    # Pelican content
-├── themes/physics-programmer/  # Custom theme
-├── workflows/                  # Agent orchestration
-├── data/                      # Agent outputs
-└── output/                    # Generated site
+```bash
+cd cv/overleaf
+tectonic resume.tex --outdir build
 ```
 
-## 🔧 Configuration
+The local PDF is written to `cv/overleaf/build/resume.pdf`.
 
-- **Development**: `pelicanconf.py`
-- **Production**: `publishconf.py` 
-- **Deployment**: `.github/workflows/deploy.yml`
+## Deployment
 
-## 📊 Deployment
+Pushing to `main` runs `.github/workflows/deploy.yml`, builds the Pelican site into `output/`, and deploys that artifact to GitHub Pages.
 
-The site automatically deploys to GitHub Pages when changes are pushed to the main branch:
-
-1. **GitHub Actions** builds the site using uv and Pelican
-2. **Optimized output** is deployed to GitHub Pages
-3. **Live site** available at `https://physics-programmer.github.io`
-
-## 🎯 Professional Use
-
-This portfolio is designed for:
-- Academic researchers and computational scientists
-- EU research project principal investigators
-- Software engineering professionals in research
-- Open source contributors and collaborators
-
-## 📄 License
-
-MIT License - See [LICENSE](LICENSE) for details.
-
----
-
-**Built with AI agents and modern web technologies** | **Optimized for research professionals**
+Do not commit generated HTML directories such as `output/`, `archives/`, `category/`, `tag/`, `projects/`, or `theme/` once the source-based workflow has been verified on GitHub Actions.

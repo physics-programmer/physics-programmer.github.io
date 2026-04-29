@@ -1,53 +1,10 @@
-# Hide ALL development files - only show website files like gh-pages branch
-
-# Source and development directories
-.claude/
-agents/
-cache/
-content/
-data/
-logs/
-site-specifications/
-themes/
-workflows/
-output/
-
-# Configuration and build files
-pelicanconf.py
-publishconf*.py
-requirements*.txt
-uv.lock
-
-# Log and report files
-*.log
-*-log.txt
-*-report.md
-*-report.txt
-content-generation-log.txt
-site-build-report.md
-
-# Python artifacts
+# Python/runtime artifacts
 __pycache__/
 *.py[cod]
 *$py.class
-*.so
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-MANIFEST
+.mypy_cache/
+.pytest_cache/
+.cache/
 
 # Virtual environments
 .venv/
@@ -55,14 +12,35 @@ venv/
 ENV/
 env/
 
-# IDE and editor files
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
+# Generated Pelican output and local run state
+output/
+cache/
+logs/
+data/
 
-# OS files
+# Legacy generated site output kept tracked until CI is verified, then git-rm'd
+/archives/
+/category/
+/tag/
+/projects/
+/theme/
+/index.html
+/index2.html
+/categories.html
+/tags.html
+
+# CV private sources and generated build artifacts
+cv/sources/
+cv/outputs/
+cv/overleaf/build/
+cv/overleaf/*.aux
+cv/overleaf/*.log
+cv/overleaf/*.out
+cv/overleaf/*.toc
+cv/overleaf/*.xdv
+
+# Local/editor/OS files
+.claude/
 .DS_Store
 .DS_Store?
 ._*
@@ -70,18 +48,18 @@ env/
 .Trashes
 ehthumbs.db
 Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
 
-# Cache and temporary files
-.cache/
-*.cache
+# Logs, temporary files, backups
+*.log
+*-log.txt
+*-report.md
+*-report.txt
 *.tmp
 *.temp
 *.bak
 *.backup
-
-# Keep only these files visible (like gh-pages):
-# - *.html files (website pages)
-# - /archives/, /category/, /projects/, /tag/ directories
-# - /theme/ directory (CSS, JS, images)
-# - README.md
-# - .gitignore
