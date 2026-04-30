@@ -2,7 +2,7 @@
 
 {% block title %}Project Archives - {{ SITENAME }}{% endblock title %}
 
-{% block description %}Complete chronological archive of physics-programmer's research projects and computational developments{% endblock description %}
+{% block description %}Complete chronological archive of Salim Mimouni's projects and technical work{% endblock description %}
 
 {% block body_class %}archives-page{% endblock body_class %}
 
@@ -21,7 +21,7 @@
             
             <h1 class="archives-title">Project Timeline</h1>
             <p class="archives-description">
-                Chronological overview of research projects, computational developments, and collaborative initiatives
+                Chronological overview of projects, technical work, and research contributions
             </p>
             
             <div class="archives-stats">
@@ -105,11 +105,13 @@
                                 
                                 {% if article.technologies %}
                                 <div class="timeline-technologies">
-                                    {% for tech in article.technologies[:3] %}
+                                    {% for tech in article.technologies|csv_items %}
+                                    {% if loop.index <= 3 %}
                                     <span class="tech-tag small">{{ tech }}</span>
+                                    {% endif %}
                                     {% endfor %}
-                                    {% if article.technologies|length > 3 %}
-                                    <span class="tech-tag small more">+{{ article.technologies|length - 3 }}</span>
+                                    {% if article.technologies|csv_items|length > 3 %}
+                                    <span class="tech-tag small more">+{{ article.technologies|csv_items|length - 3 }}</span>
                                     {% endif %}
                                 </div>
                                 {% endif %}
@@ -155,11 +157,13 @@
                             
                             {% if article.technologies %}
                             <div class="article-technologies">
-                                {% for tech in article.technologies[:4] %}
+                                {% for tech in article.technologies|csv_items %}
+                                {% if loop.index <= 4 %}
                                 <span class="tech-tag">{{ tech }}</span>
+                                {% endif %}
                                 {% endfor %}
-                                {% if article.technologies|length > 4 %}
-                                <span class="tech-tag more">+{{ article.technologies|length - 4 }}</span>
+                                {% if article.technologies|csv_items|length > 4 %}
+                                <span class="tech-tag more">+{{ article.technologies|csv_items|length - 4 }}</span>
                                 {% endif %}
                             </div>
                             {% endif %}

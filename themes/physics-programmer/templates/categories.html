@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Categories - {{ SITENAME }}{% endblock title %}
+
+{% block description %}Project categories for Salim Mimouni's portfolio{% endblock description %}
+
+{% block content %}
+<div class="archives-container">
+    <header class="archives-header">
+        <div class="container">
+            <h1 class="archives-title">Categories</h1>
+            <p class="archives-description">Project groups by professional and research context.</p>
+        </div>
+    </header>
+    <main class="archives-content">
+        <div class="container">
+            <div class="articles-list">
+                {% for category, articles in categories %}
+                <article class="article-item">
+                    <div class="article-content">
+                        <h3 class="article-title">
+                            <a href="{{ SITEURL }}/{{ category.url }}">{{ category|format_project_type }}</a>
+                        </h3>
+                        <p class="article-summary">{{ articles|length }} project{% if articles|length != 1 %}s{% endif %}</p>
+                    </div>
+                    <div class="article-actions">
+                        <a href="{{ SITEURL }}/{{ category.url }}" class="article-link">View Category</a>
+                    </div>
+                </article>
+                {% endfor %}
+            </div>
+        </div>
+    </main>
+</div>
+{% endblock content %}

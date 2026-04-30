@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}{{ category|format_project_type }} - {{ SITENAME }}{% endblock title %}
+
+{% block description %}Projects and case studies in {{ category|format_project_type }}{% endblock description %}
+
+{% block body_class %}category-page{% endblock body_class %}
+
+{% block content %}
+<div class="archives-container">
+    <header class="archives-header">
+        <div class="container">
+            <div class="archives-breadcrumb">
+                <nav aria-label="Breadcrumb">
+                    <ol class="breadcrumb">
+                        <li><a href="{{ SITEURL }}/">Home</a></li>
+                        <li aria-current="page">{{ category|format_project_type }}</li>
+                    </ol>
+                </nav>
+            </div>
+            <h1 class="archives-title">{{ category|format_project_type }}</h1>
+            <p class="archives-description">Selected work grouped by project category.</p>
+        </div>
+    </header>
+
+    <main class="archives-content">
+        <div class="container">
+            <div class="articles-list">
+                {% for article in articles %}
+                <article class="article-item">
+                    <div class="article-content">
+                        <header class="article-header">
+                            <h3 class="article-title">
+                                <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a>
+                            </h3>
+                            <div class="article-meta">
+                                <time class="article-date" datetime="{{ article.date.isoformat() }}">
+                                    {{ article.date.strftime('%B %d, %Y') }}
+                                </time>
+                            </div>
+                        </header>
+                        <div class="article-body">
+                            <p class="article-summary">{{ article.summary }}</p>
+                        </div>
+                    </div>
+                    <div class="article-actions">
+                        <a href="{{ SITEURL }}/{{ article.url }}" class="article-link">View Project</a>
+                    </div>
+                </article>
+                {% endfor %}
+            </div>
+        </div>
+    </main>
+</div>
+{% endblock content %}

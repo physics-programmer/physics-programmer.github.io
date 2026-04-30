@@ -17,26 +17,26 @@
     <meta property="og:title" content="{% block og_title %}{{ self.title() }}{% endblock og_title %}">
     <meta property="og:description" content="{% block og_description %}{{ self.description() }}{% endblock og_description %}">
     <meta property="og:type" content="{% block og_type %}website{% endblock og_type %}">
-    <meta property="og:url" content="{% block og_url %}{{ SITEURL }}{{ output_file }}{% endblock og_url %}">
-    <meta property="og:image" content="{% block og_image %}{{ SITEURL }}/{{ DEFAULT_SOCIAL_IMAGE|default('images/physics-programmer-og.png') }}{% endblock og_image %}">
+    <meta property="og:url" content="{% block og_url %}{{ SITEURL }}/{{ output_file }}{% endblock og_url %}">
+    {% if DEFAULT_SOCIAL_IMAGE %}
+    <meta property="og:image" content="{% block og_image %}{{ SITEURL }}/{{ DEFAULT_SOCIAL_IMAGE }}{% endblock og_image %}">
+    {% endif %}
     <meta property="og:site_name" content="{{ SITENAME }}">
     
     <!-- Twitter Card Tags -->
     <meta name="twitter:card" content="summary_large_image">
+    {% if TWITTER_USERNAME %}
     <meta name="twitter:site" content="@{{ TWITTER_USERNAME }}">
     <meta name="twitter:creator" content="@{{ TWITTER_USERNAME }}">
+    {% endif %}
     <meta name="twitter:title" content="{% block twitter_title %}{{ self.og_title() }}{% endblock twitter_title %}">
     <meta name="twitter:description" content="{% block twitter_description %}{{ self.og_description() }}{% endblock twitter_description %}">
+    {% if DEFAULT_SOCIAL_IMAGE %}
     <meta name="twitter:image" content="{% block twitter_image %}{{ self.og_image() }}{% endblock twitter_image %}">
+    {% endif %}
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="{% block canonical %}{{ SITEURL }}{{ output_file }}{% endblock canonical %}">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="{{ SITEURL }}/favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ SITEURL }}/images/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ SITEURL }}/images/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ SITEURL }}/images/favicon-16x16.png">
+    <link rel="canonical" href="{% block canonical %}{{ SITEURL }}/{{ output_file }}{% endblock canonical %}">
     
     <!-- Stylesheets -->
     <link rel="stylesheet" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/main.css">
@@ -91,7 +91,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>Research Areas</h3>
+                    <h3>Focus Areas</h3>
                     <ul class="research-domains">
                         {% for domain in RESEARCH_DOMAINS %}
                         <li>{{ domain }}</li>
@@ -100,12 +100,12 @@
                 </div>
                 
                 <div class="footer-section">
-                    <h3>Research Programs</h3>
+                    <h3>Project Links</h3>
                     <ul class="research-links">
-                        <li><a href="https://erc.europa.eu/" target="_blank" rel="noopener">ERC Grants</a></li>
-                        <li><a href="https://cordis.europa.eu/" target="_blank" rel="noopener">EU CORDIS</a></li>
                         <li><a href="https://ryax.tech/" target="_blank" rel="noopener">Ryax Platform</a></li>
                         <li><a href="https://cordis.europa.eu/project/id/101017047" target="_blank" rel="noopener">PHYSICS Project</a></li>
+                        <li><a href="{{ SITEURL }}/files/salim_mimouni_cv.pdf">CV</a></li>
+                        <li><a href="{{ SITEURL }}/contact/">Contact</a></li>
                     </ul>
                 </div>
                 
@@ -126,7 +126,7 @@
                 </div>
                 
                 <div class="footer-section">
-                    <h3>Academic Profiles</h3>
+                    <h3>Research Identity</h3>
                     <ul class="academic-links">
                         {% for platform, id in ACADEMIC_PROFILES.items() %}
                         <li>
@@ -153,8 +153,7 @@
                 <div class="footer-meta">
                     <p>
                         Built with <a href="https://getpelican.com/" rel="noopener">Pelican</a> |
-                        <a href="{{ SITEURL }}/feeds/all.atom.xml" rel="alternate">RSS</a> |
-                        <a href="{{ SITEURL }}/privacy/">Privacy</a>
+                        <a href="{{ SITEURL }}/feeds/all.atom.xml" rel="alternate">RSS</a>
                     </p>
                 </div>
             </div>

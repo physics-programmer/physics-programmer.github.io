@@ -76,7 +76,7 @@
                 {% if article.technologies %}
                 <div class="tag-group">
                     <span class="tag-label">Technologies:</span>
-                    {% for tech in article.technologies %}
+                    {% for tech in article.technologies|csv_items %}
                     <span class="tech-tag">{{ tech }}</span>
                     {% endfor %}
                 </div>

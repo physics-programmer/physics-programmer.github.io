@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Tags - {{ SITENAME }}{% endblock title %}
+
+{% block description %}Technical tags for Salim Mimouni's portfolio{% endblock description %}
+
+{% block content %}
+<div class="archives-container">
+    <header class="archives-header">
+        <div class="container">
+            <h1 class="archives-title">Tags</h1>
+            <p class="archives-description">Technical topics across the portfolio.</p>
+        </div>
+    </header>
+    <main class="archives-content">
+        <div class="container">
+            <div class="article-tags">
+                {% for tag, articles in tags %}
+                <a href="{{ SITEURL }}/{{ tag.url }}" class="content-tag">{{ tag }} ({{ articles|length }})</a>
+                {% endfor %}
+            </div>
+        </div>
+    </main>
+</div>
+{% endblock content %}

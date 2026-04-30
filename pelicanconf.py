@@ -5,8 +5,8 @@ import logging
 from datetime import datetime
 
 # Basic Settings
-AUTHOR = 'physics-programmer'
-SITENAME = 'physics-programmer | Computational Research & Development'
+AUTHOR = 'Salim Mimouni, PhD'
+SITENAME = 'Salim Mimouni | Data Scientist, AI Orchestration & Cloud-HPC'
 SITEURL = ''  # Leave empty for development
 
 # Current year for templates
@@ -17,6 +17,8 @@ PATH = 'content'
 OUTPUT_PATH = 'output'
 TIMEZONE = 'Europe/Paris'
 DEFAULT_LANG = 'en'
+ARTICLE_PATHS = ['projects']
+PAGE_PATHS = ['pages']
 
 # Feed generation (disabled for development)
 FEED_ALL_ATOM = None
@@ -30,25 +32,25 @@ SOCIAL = (
     ('GitHub', 'https://github.com/physics-programmer'),
     ('LinkedIn', 'https://www.linkedin.com/in/mimouni/'),
     ('ORCID', 'https://orcid.org/0009-0008-7841-412X'),
-    ('ResearchGate', 'https://researchgate.net/profile/physics-programmer'),
 )
 
 # Navigation Menu
 MENUITEMS = (
     ('Home', '/'),
-    ('About', '/about.html'),
-    ('Research', '/category/eu-research.html'),
+    ('About', '/about/'),
     ('Projects', '/projects/'),
-    ('Publications', '/publications.html'),
-    ('Contact', '/contact.html'),
+    ('Research', '/category/eu-research/'),
+    ('Professional Work', '/category/professional-collaboration/'),
+    ('CV', '/files/salim_mimouni_cv.pdf'),
+    ('Contact', '/contact/'),
 )
 
 # URL and File Structure
 DEFAULT_PAGINATION = 10
 
 # Article and Page URLs
-ARTICLE_URL = 'projects/{category}/{slug}/'
-ARTICLE_SAVE_AS = 'projects/{category}/{slug}/index.html'
+ARTICLE_URL = 'projects/{slug}/'
+ARTICLE_SAVE_AS = 'projects/{slug}/index.html'
 PAGE_URL = '{slug}/'
 PAGE_SAVE_AS = '{slug}/index.html'
 
@@ -148,46 +150,43 @@ SHOW_ARTICLE_CATEGORY = True
 SHOW_DATE_MODIFIED = True
 
 # Custom Theme Variables
-SITE_DESCRIPTION = 'Leading computational research at the intersection of physics, data science, and software engineering. Specialized in European research collaborations and scientific computing.'
-SITE_KEYWORDS = 'physics, computational research, data science, European research, scientific computing, Python, machine learning'
+SITE_DESCRIPTION = 'Data Scientist focused on AI workflow orchestration, Cloud-HPC platforms, Kubernetes/Slurm scheduling, LLM agents, RAG pipelines, and HPC performance modeling.'
+SITE_KEYWORDS = 'data science, AI orchestration, Cloud-HPC, Kubernetes, Slurm, LLM agents, RAG, HPC, Python'
 
 # Professional Information
-AUTHOR_BIO = 'Computational researcher specializing in physics-based modeling, data analysis, and scientific software development. Principal Investigator on European research projects.'
-AUTHOR_LOCATION = 'Europe'
+AUTHOR_BIO = 'Data Scientist at Ryax Technologies working on AI workflow orchestration for hybrid Cloud-HPC infrastructures, with prior HPC data-management research at Bull/Atos.'
+AUTHOR_LOCATION = 'Lyon, France'
 AUTHOR_WEBSITE = 'https://physics-programmer.github.io'
+CONTACT_EMAIL = 'salim.mimouni@gmail.com'
 
 # Research and Academic Settings
-SHOW_RESEARCH_HIGHLIGHTS = True
-SHOW_PUBLICATION_COUNT = True
-SHOW_COLLABORATION_MAP = True
 RESEARCH_DOMAINS = [
-    'Computational Physics',
-    'Scientific Computing',
-    'Data Science',
-    'Machine Learning',
-    'European Research'
+    'AI Workflow Orchestration',
+    'Cloud-HPC Scheduling',
+    'LLM Agents and RAG',
+    'HPC Performance Modeling',
+    'Production Python'
 ]
 
 # Schema.org Structured Data
 PERSON_SCHEMA = {
-    'name': 'physics-programmer',
-    'jobTitle': 'Computational Researcher',
-    'affiliation': 'Research Institution',
+    'name': 'Salim Mimouni',
+    'jobTitle': 'Data Scientist',
+    'affiliation': 'Ryax Technologies',
     'sameAs': [
         'https://github.com/physics-programmer',
         'https://www.linkedin.com/in/mimouni/',
-        'https://orcid.org/0009-0008-7841-412X',
-        'https://researchgate.net/profile/physics-programmer'
+        'https://orcid.org/0009-0008-7841-412X'
     ]
 }
 
 # Project Categories for Navigation
 PROJECT_CATEGORIES = [
     ('featured', 'Featured Projects'),
-    ('eu-research', 'EU Research'),
+    ('eu-research', 'EU Research Contributions'),
+    ('professional-collaboration', 'Professional Work'),
     ('research', 'Academic Research'),
-    ('collaborations', 'Collaborations'),
-    ('tools', 'Research Tools'),
+    ('tools', 'Technical Tools'),
 ]
 
 # Technology Tags for Filtering
@@ -199,23 +198,21 @@ TECHNOLOGY_TAGS = [
 ]
 
 # SEO and Social Media
-TWITTER_USERNAME = 'physics_programmer'
+TWITTER_USERNAME = ''
 GITHUB_USERNAME = 'physics-programmer'
+GITHUB_URL = 'https://github.com/physics-programmer'
 LINKEDIN_USERNAME = 'mimouni'
 ORCID_ID = '0009-0008-7841-412X'
 
-# Google Analytics (placeholder - replace with actual ID)
-GOOGLE_ANALYTICS = 'G-XXXXXXXXXX'
+# Google Analytics
+GOOGLE_ANALYTICS = ''
 
-# Disqus Comments (placeholder - replace with actual shortname)
-DISQUS_SITENAME = 'physics-programmer'
+# Disqus Comments
+DISQUS_SITENAME = ''
 
 # Academic Profiles
 ACADEMIC_PROFILES = {
     'orcid': '0009-0008-7841-412X',
-    'researchgate': 'physics-programmer',
-    'google_scholar': 'physics-programmer',
-    'arxiv': 'physics-programmer',
 }
 
 # Development Settings
@@ -236,9 +233,12 @@ def format_project_type(project_type):
         'ACADEMIC_RESEARCH': 'Academic Research',
         'PROFESSIONAL_COLLABORATION': 'Collaboration',
         'INSTITUTIONAL_INTERNAL': 'Internal Project',
-        'PERSONAL_DEVELOPMENT': 'Personal Project'
+        'PERSONAL_DEVELOPMENT': 'Personal Project',
+        'eu-research': 'EU Research Contributions',
+        'professional-collaboration': 'Professional Work',
+        'projects': 'Projects',
     }
-    return type_map.get(project_type, project_type)
+    return type_map.get(str(project_type), project_type)
 
 def format_technology_list(technologies):
     """Format technology list for display"""
@@ -246,9 +246,18 @@ def format_technology_list(technologies):
         return ', '.join(technologies[:5])  # Show max 5 technologies
     return str(technologies)
 
+def csv_items(value):
+    """Render comma-separated metadata fields as a list for templates."""
+    if not value:
+        return []
+    if isinstance(value, (list, tuple)):
+        return value
+    return [item.strip() for item in str(value).split(',') if item.strip()]
+
 JINJA_FILTERS = {
     'format_project_type': format_project_type,
     'format_technology_list': format_technology_list,
+    'csv_items': csv_items,
 }
 
 # Content Processing

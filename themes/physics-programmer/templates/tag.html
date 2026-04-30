@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}{{ tag }} - {{ SITENAME }}{% endblock title %}
+
+{% block description %}Projects tagged {{ tag }}{% endblock description %}
+
+{% block body_class %}tag-page{% endblock body_class %}
+
+{% block content %}
+<div class="archives-container">
+    <header class="archives-header">
+        <div class="container">
+            <div class="archives-breadcrumb">
+                <nav aria-label="Breadcrumb">
+                    <ol class="breadcrumb">
+                        <li><a href="{{ SITEURL }}/">Home</a></li>
+                        <li aria-current="page">{{ tag }}</li>
+                    </ol>
+                </nav>
+            </div>
+            <h1 class="archives-title">Tag: {{ tag }}</h1>
+            <p class="archives-description">Projects and notes matching this technical tag.</p>
+        </div>
+    </header>
+
+    <main class="archives-content">
+        <div class="container">
+            <div class="articles-list">
+                {% for article in articles %}
+                <article class="article-item">
+                    <div class="article-content">
+                        <header class="article-header">
+                            <h3 class="article-title">
+                                <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a>
+                            </h3>
+                            <div class="article-meta">
+                                <span class="article-category">{{ article.category|format_project_type }}</span>
+                            </div>
+                        </header>
+                        <div class="article-body">
+                            <p class="article-summary">{{ article.summary }}</p>
+                        </div>
+                    </div>
+                    <div class="article-actions">
+                        <a href="{{ SITEURL }}/{{ article.url }}" class="article-link">View Project</a>
+                    </div>
+                </article>
+                {% endfor %}
+            </div>
+        </div>
+    </main>
+</div>
+{% endblock content %}

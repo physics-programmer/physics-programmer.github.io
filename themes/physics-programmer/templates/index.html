@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}{{ SITENAME }} - {{ SITE_DESCRIPTION }}{% endblock title %}
+{% block title %}{{ SITENAME }}{% endblock title %}
 
 {% block description %}{{ SITE_DESCRIPTION }}{% endblock description %}
 
@@ -12,20 +12,16 @@
         <div class="hero-content">
             <div class="hero-main">
                 <h1 class="hero-title">{{ AUTHOR }}</h1>
-                <p class="hero-subtitle">Computational Research & Development</p>
+                <p class="hero-subtitle">Data Scientist | AI Orchestration & Cloud-HPC Workflows</p>
                 <p class="hero-description">{{ AUTHOR_BIO }}</p>
                 <div class="hero-stats-inline">
                     <span class="stat">{{ articles|length }} Projects</span>
-                    <span class="stat">{{ categories|length }} Research Areas</span>
-                    <span class="stat">{{ RESEARCH_DOMAINS|length }} Domains</span>
+                    <span class="stat">{{ categories|length }} Areas</span>
+                    <span class="stat">ORCID {{ ORCID_ID }}</span>
                 </div>
                 <div class="hero-domains">
                     {% for domain in RESEARCH_DOMAINS %}
-                    {% if domain == "European Research" %}
-                    <a href="https://erc.europa.eu/" class="domain-pill" target="_blank" rel="noopener">{{ domain }}</a>
-                    {% else %}
                     <span class="domain-pill">{{ domain }}</span>
-                    {% endif %}
                     {% endfor %}
                 </div>
             </div>
@@ -35,63 +31,65 @@
 
 <section id="featured-projects" class="featured-projects">
     <div class="container">
-        <h2>Key Projects</h2>
+        <h2>Selected Work</h2>
         <div class="projects-horizontal">
             <article class="project-card-clean">
-                <h3 class="project-name">Seedl</h3>
-                <p class="project-description">Seedl is an AI-powered financial document analysis and KPI extraction platform serving the FinTech industry with production-scale capabilities.</p>
-                <p class="project-contribution">I contributed as team member with Charles Marshall, Pedro Velho, and Michael Mercier over 3+ years (589 total commits, 15 commits in last 90 days).</p>
-                <div class="project-links">
-                    <span class="project-link private-project">Private Project</span>
-                </div>
-            </article>
-            
-            <article class="project-card-clean">
                 <h3 class="project-name">Ryax Runner</h3>
-                <p class="project-description">The core workflow execution engine powering the Ryax enterprise platform with cloud-native architecture and high-scale processing capabilities.</p>
-                <p class="project-contribution">I contributed as Platform Development Contributor with Michael Mercier, Charles Marshall, and David Glesser (1,125 total commits, Apache-2.0 licensed).</p>
+                <p class="project-description">Workflow execution engine in the Ryax platform ecosystem, connected to cloud-native orchestration and scientific workflow use cases.</p>
+                <p class="project-contribution">Contributions focus on Python services, workflow execution, Kubernetes integration, and platform documentation around reliable workflow automation.</p>
                 <div class="project-links">
-                    <a href="https://ryax.tech/" class="project-link" target="_blank" rel="noopener">Platform</a>
-                    <a href="https://docs.ryax.tech/" class="project-link" target="_blank" rel="noopener">Documentation</a>
+                    <a href="/projects/ryax-runner/" class="project-link">Case Study</a>
                     <a href="https://gitlab.com/ryax-tech/ryax/ryax-runner" class="project-link" target="_blank" rel="noopener">Repository</a>
                 </div>
             </article>
-            
+
             <article class="project-card-clean">
                 <h3 class="project-name">CAPE Agentic Infrastructure</h3>
-                <p class="project-description">CAPE project developing cognitive agent-based proactive edge computing infrastructure with LLM-empowered provisioning capabilities.</p>
-                <p class="project-contribution">I lead this project as main contributor with 62 out of 66 commits, active development in WP2 (Infrastructure from Code) & WP4 (LLM Infrastructure).</p>
+                <p class="project-description">Research and prototyping around LLM-assisted infrastructure provisioning for proactive edge and cloud environments.</p>
+                <p class="project-contribution">Work spans Python APIs, agent workflows, structured infrastructure descriptions, and evaluation paths for provider-agnostic automation.</p>
                 <div class="project-links">
+                    <a href="/projects/cape-agentic-infra/" class="project-link">Case Study</a>
                     <a href="https://gitlab.com/ryax-tech/research/cape-tools/cape-agentic-infra" class="project-link" target="_blank" rel="noopener">Repository</a>
                 </div>
             </article>
-            
+
             <article class="project-card-clean">
                 <h3 class="project-name">Global Continuum Placement</h3>
-                <p class="project-description">PHYSICS EU Research Project advancing meta-scheduling research for multi-cluster continuum computing with next-generation distributed computing infrastructure.</p>
-                <p class="project-contribution">I contributed to Work Package 2 (Meta-scheduling) with Michael Mercier, Anderson Andrei, and Yiannis Georgiou (87 total commits, 2021-2024).</p>
+                <p class="project-description">PHYSICS project work on placement and meta-scheduling across distributed cloud-edge-HPC resources.</p>
+                <p class="project-contribution">Contributions connect optimization, workload placement, Python services, and reproducible evaluation for multi-cluster scheduling.</p>
                 <div class="project-links">
+                    <a href="/projects/global-continuum-placement/" class="project-link">Case Study</a>
                     <a href="https://github.com/andersonandrei/global-continuum-placement" class="project-link" target="_blank" rel="noopener">Repository</a>
-                    <a href="https://cordis.europa.eu/project/id/101017047" class="project-link" target="_blank" rel="noopener">EU Project</a>
                 </div>
             </article>
-            
+
+            <article class="project-card-clean">
+                <h3 class="project-name">Seedl</h3>
+                <p class="project-description">Private FinTech collaboration around AI-assisted financial document analysis and KPI extraction workflows.</p>
+                <p class="project-contribution">Contributions focus on Python backend services, database models, workflow integration, and maintainable production code practices.</p>
+                <div class="project-links">
+                    <a href="/projects/seedl/" class="project-link">Case Study</a>
+                    <span class="project-link private-project">Private Project</span>
+                </div>
+            </article>
+
             <article class="project-card-clean">
                 <h3 class="project-name">GPU-AI Workflows</h3>
-                <p class="project-description">GPU-accelerated AI workflows and synthetic data generation platform enabling high-performance machine learning and data creation at scale.</p>
-                <p class="project-contribution">I actively contribute with Alvin Snaik, Yiannis Georgiou, and Pedro Velho (353 total commits, 25 commits in last 90 days, currently active).</p>
+                <p class="project-description">GPU-oriented AI workflow components for model execution, synthetic data experiments, and workflow packaging.</p>
+                <p class="project-contribution">Work combines PyTorch, Hugging Face tooling, FastAPI, and workflow orchestration patterns for reusable AI pipelines.</p>
                 <div class="project-links">
+                    <a href="/projects/gpu-ai/" class="project-link">Case Study</a>
                     <span class="project-link private-project">Private Repository</span>
                 </div>
             </article>
-            
+
             <article class="project-card-clean">
-                <h3 class="project-name">Ryax Public Documentation</h3>
-                <p class="project-description">Public documentation for Ryax platform and workflows, providing comprehensive technical documentation and user guides.</p>
-                <p class="project-contribution">I contributed to technical documentation excellence with David Glesser, Pedro Velho, and Michael Mercier (381 total commits, Apache-2.0 licensed).</p>
+                <h3 class="project-name">Ryax Documentation</h3>
+                <p class="project-description">Public technical documentation for Ryax users and developers, covering platform concepts, workflows, and examples.</p>
+                <p class="project-contribution">Contributions support clearer onboarding, API usage, workflow examples, and documentation maintenance.</p>
                 <div class="project-links">
-                    <a href="https://docs.ryax.tech/" class="project-link" target="_blank" rel="noopener">Live Documentation</a>
-                    <a href="https://gitlab.com/ryax-tech/ryax/ryax-public-doc" class="project-link" target="_blank" rel="noopener">Repository</a>
+                    <a href="/projects/ryax-public-doc/" class="project-link">Case Study</a>
+                    <a href="https://docs.ryax.tech/" class="project-link" target="_blank" rel="noopener">Docs</a>
                 </div>
             </article>
         </div>
@@ -102,10 +100,11 @@
     <div class="container">
         <div class="contact-horizontal">
             <div class="contact-text">
-                <h2>Collaboration & Contact</h2>
-                <p>Interested in computational research collaboration or consulting? Let's advance scientific knowledge together.</p>
+                <h2>Contact</h2>
+                <p>Open to data science, AI workflow orchestration, Cloud-HPC, and production Python roles or collaborations.</p>
             </div>
             <div class="contact-links">
+                <a href="/files/salim_mimouni_cv.pdf" class="contact-link">CV</a>
                 <a href="https://github.com/physics-programmer" class="contact-link">GitHub</a>
                 <a href="https://www.linkedin.com/in/mimouni/" class="contact-link">LinkedIn</a>
                 <a href="https://orcid.org/0009-0008-7841-412X" class="contact-link">ORCID</a>

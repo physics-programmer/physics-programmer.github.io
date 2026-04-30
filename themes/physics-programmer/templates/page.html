@@ -70,7 +70,7 @@
                         
                         <div class="about-highlights">
                             <div class="highlight-card">
-                                <h3>Research Focus</h3>
+                                <h3>Technical Focus</h3>
                                 <ul class="focus-list">
                                     {% for domain in RESEARCH_DOMAINS %}
                                     <li>{{ domain }}</li>
@@ -79,15 +79,15 @@
                             </div>
                             
                             <div class="highlight-card">
-                                <h3>Active Projects</h3>
+                                <h3>Selected Work</h3>
                                 <p class="stat-large">{{ articles|length }}</p>
-                                <p class="stat-description">Current research initiatives</p>
+                                <p class="stat-description">Public portfolio case studies</p>
                             </div>
                             
                             <div class="highlight-card">
                                 <h3>Collaboration</h3>
-                                <p class="stat-large">European</p>
-                                <p class="stat-description">Multi-national research networks</p>
+                                <p class="stat-large">Hybrid</p>
+                                <p class="stat-description">Cloud, HPC, and AI workflows</p>
                             </div>
                         </div>
                     </div>
@@ -99,7 +99,7 @@
                             {% for platform, id in ACADEMIC_PROFILES.items() %}
                             <a href="{% if platform == 'orcid' %}https://orcid.org/{{ id }}{% elif platform == 'researchgate' %}https://researchgate.net/profile/{{ id }}{% elif platform == 'google_scholar' %}https://scholar.google.com/citations?user={{ id }}{% elif platform == 'arxiv' %}https://arxiv.org/search/?searchtype=author&query={{ id }}{% endif %}" 
                                class="academic-card" target="_blank" rel="noopener noreferrer">
-                                <div class="academic-icon">{{ platform|upper[:2] }}</div>
+                                <div class="academic-icon">{{ platform[:2]|upper }}</div>
                                 <h3>{{ platform|title|replace('_', ' ') }}</h3>
                                 <p>View profile and publications</p>
                             </a>
@@ -118,7 +118,7 @@
                         <div class="contact-methods">
                             <div class="contact-card">
                                 <h3>Professional Inquiry</h3>
-                                <p>For research collaboration, consulting opportunities, or academic partnerships.</p>
+                                <p>For data science roles, AI workflow orchestration, Cloud-HPC work, or research collaborations.</p>
                                 {% if CONTACT_EMAIL %}
                                 <a href="mailto:{{ CONTACT_EMAIL }}" class="contact-link">
                                     {{ CONTACT_EMAIL }}
@@ -127,8 +127,8 @@
                             </div>
                             
                             <div class="contact-card">
-                                <h3>Research Networks</h3>
-                                <p>Connect through academic and professional platforms.</p>
+                                <h3>Professional Profiles</h3>
+                                <p>Connect through verified professional and research profiles.</p>
                                 <div class="network-links">
                                     {% for name, link in SOCIAL %}
                                     <a href="{{ link }}" class="network-link" target="_blank" rel="noopener noreferrer">
@@ -139,8 +139,8 @@
                             </div>
                             
                             <div class="contact-card">
-                                <h3>Open Source</h3>
-                                <p>Contribute to or inquire about open source projects.</p>
+                                <h3>Code</h3>
+                                <p>Review public repositories and project work.</p>
                                 <a href="{{ GITHUB_URL or 'https://github.com/' + GITHUB_USERNAME }}" 
                                    class="contact-link" target="_blank" rel="noopener noreferrer">
                                     GitHub Profile
@@ -159,12 +159,6 @@
                                 <h3>Research Output</h3>
                                 <p class="metric-note">Updated publication metrics and citation information available through academic profiles.</p>
                                 <div class="metric-links">
-                                    {% if ACADEMIC_PROFILES.google_scholar %}
-                                    <a href="https://scholar.google.com/citations?user={{ ACADEMIC_PROFILES.google_scholar }}" 
-                                       class="metric-link" target="_blank" rel="noopener noreferrer">
-                                        Google Scholar
-                                    </a>
-                                    {% endif %}
                                     {% if ACADEMIC_PROFILES.orcid %}
                                     <a href="https://orcid.org/{{ ACADEMIC_PROFILES.orcid }}" 
                                        class="metric-link" target="_blank" rel="noopener noreferrer">
@@ -200,10 +194,10 @@
     <section class="about-cta">
         <div class="container">
             <div class="cta-content">
-                <h2>Let's Collaborate</h2>
-                <p>Interested in working together on computational research or European projects?</p>
+                <h2>Contact</h2>
+                <p>Interested in AI workflow orchestration, Cloud-HPC, or production Python work?</p>
                 <div class="cta-actions">
-                    <a href="/contact.html" class="btn btn-primary">Get in Touch</a>
+                    <a href="/contact/" class="btn btn-primary">Get in Touch</a>
                     <a href="/projects/" class="btn btn-secondary">View Projects</a>
                 </div>
             </div>
